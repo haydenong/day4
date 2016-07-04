@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+
+    <script src="/jquery/dist/jquery.js"></script>
+
+    <script src="/bootstrap/dist/js/bootstrap.js"></script>
+
+
+    <script src="/angular/angular.js"></script>
+    <script src="/myfirstangular.js"></script>
+
+</head>
+<body>
+
+<form name=”regForm” novalidate ng-submit=”ctrl.submit()”>
+
+    <div class=”form-group”
+         ng-class=”{‘has-success’: regForm.username.$valid,
+         ‘has-error’: regForm.username.$invalid”>
+        <label for=”username”>Username:</label>
+
+        <input type=”text” id=”username” name=”username” required
+               class=”form-control” ng-model=”ctrl.username”>
+
+		<span class=”help-block” ng-show=”regForm.username.$invalid”>
+			Please choose an appropriate username</span>
+    </div>
+
+    ...
+
+    <button type=”submit” class=”btn btn-success form-control”
+            ng-disabled=”regForm.$invalid”>
+        Register
+    </button>
+</form>
+
+
+<!--<form action="submit" method="post" role="form" name="myForm">-->
+	<!--<legend>Form Title</legend>-->
+
+	<!--<div class="form-group">-->
+		<!--<label for="name">Name</label>-->
+		<!--<input type="text" class="form-control" name="name" id="name" placeholder="Input..." ng-model="name" required>-->
+	<!--</div>-->
+
+
+
+	<!--<button type="submit" class="btn btn-primary">Submit</button>-->
+<!--</form>-->
+    <!--{{myForm.name.$valid}}-->
+</body>
+</html>

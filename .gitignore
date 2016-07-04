@@ -4,3 +4,4 @@ bower.json
 package.json
 .idea/
 bower_components/
+node_modules

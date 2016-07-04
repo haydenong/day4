@@ -1,87 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="MyFirstApp">
 <head>
     <meta charset="UTF-8">
     <title>Sample Page</title>
 
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="index.css">
 
     <script src="/jquery/dist/jquery.js"></script>
+
     <script src="/bootstrap/dist/js/bootstrap.js"></script>
 
+
+    <script src="/angular/angular.js"></script>
+    <script src="/myfirstangular.js"></script>
+
+
 </head>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h1>Registration Form</h1>
-            </div>
+<body ng-controller="MyFirstCtrl as ctrl">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h1>Registration Form</h1>
         </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <form>
-                    <div class="form-group">
-                        <label for="exampleName">Name</label>
-                        <input type="text" class="form-control" id="exampleName" placeholder="Tan Ah Gao">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleContact">Contact</label>
-                        <input type="number" class="form-control" id="exampleContact" placeholder="8888 8888">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1"
-                               placeholder="ahgao@hotmail.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleAccounts">Number of Pax</label>
-                        <select class="form-control" id="exampleAccounts">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="optionsRadios1">Smoking</label>
-                        <div class="radio">
-                            <label class="radio-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>No
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadio2" value="option2">Yes
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inlineCheckbox1">Amenities</label>
-                        <div class="checkbox">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox1" value="option1">Pool
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox2" value="option2">WiFi
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox3" value="option3">TV
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox4" value="option4">In Room Dining
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleRequest">Special Requests</label>
-                        <textarea class="form-control" rows="3" id="exampleRequest">Subjected to availability
-                        </textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </form>
-            </div>
-        </div>
-
     </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <form name="formV" novalidate ng-submit="ctrl.submit()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Tan Ah Gao"
+                           ng-model="ctrl.name" required ng-minlength="3" ng-maxlength="10">
+		            <span class="help-block" ng-show="formV.name.$dirty && formV.name.$invalid">
+			        Alphabets: 3 to 10 characters only</span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleContact">Contact</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">+65</div>
+                        <input type="tel" class="form-control" name="contact" id="exampleContact"
+                               placeholder="8888 8888" ng-model="ctrl.contact" ng-pattern="ctrl.contactPattern">
+                    </div>
+                    <span class="help-block" ng-show="formV.contact.$dirty && formV.contact.$invalid">
+			            Please enter your 8 digit contact number</span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" name = "email" id="exampleInputEmail1"
+                           placeholder="ahgao@hotmail.com" ng-model="ctrl.email">
+                    <span class="help-block" ng-show="formV.email.$dirty && formV.email.$invalid">
+			            Please enter a valid email address</span>
+                </div>
+                <div class="form-group">
+                    <label for="pax">Number of Pax</label>
+                    <select class="form-control" type="number" id="pax" name="pax"
+                            ng-model="ctrl.pax">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="optionsRadios1">Smoking</label>
+                    <div class="radio">
+                        <label class="radio-inline">
+                            <input type="radio" name="smoking" id="optionsRadios1" value="no"
+                                   ng-model="ctrl.smoking" checked>No
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="smoking" id="optionsRadio2"
+                                   ng-model="ctrl.smoking" value="yes">Yes
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inlineCheckbox1">Amenities</label>
+                    <div class="checkbox">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox1" value="option1"
+                                   ng-model="ctrl.amenities.pool">Pool
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox2" value="option2"
+                                   ng-model="ctrl.amenities.wifi">WiFi
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox3" value="option3"
+                                   ng-model="ctrl.amenities.tv">TV
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox4" value="option4"
+                                   ng-model="ctrl.amenities.inRoomDining"> In Room Dining
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleRequest">Special Requests</label>
+                        <textarea class="form-control" rows="3" id="exampleRequest"
+                                  placeholder="Subjected to availability"
+                                  ng-model="ctrl.request">
+                        </textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" ng-disabled="formV.$invalid">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
+
 </html>
