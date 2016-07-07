@@ -38,3 +38,13 @@ app.set("port", port);
 app.listen(app.get("port"), function () {
     console.info("Web server started on port %d", app.get("port"));
 });
+
+
+var fruits = ["Apple","Banana"];
+console.info(fruits.length);
+var last = fruits[fruits.length-1];
+console.info(last);
+
+fruits.forEach(function (item,index,array) {
+    console.info(item,index);
+});

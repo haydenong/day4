@@ -24,6 +24,8 @@
             message: "",
             code: 0
         };
+        
+        
 
         ctrl.submit = function () {
             console.info("name: %s", ctrl.name);
@@ -32,11 +34,21 @@
             console.info("pax: %s", ctrl.pax);
             console.info("smoking: %s", ctrl.smoking);
 
+
             for (var i in ctrl.amenities) {
                 console.info("%s: %s", i, ctrl.amenities);
+                
+                if(ctrl.amenities[i] == false){
+                    amenReq = false;
+                    break;
+                }
+                if(amenReq == false){
+                    var retVal = confirm("You have not selected any amenities. Additional request for amenities may not be " +
+                        "accommodated after submission");
+                }
             }
-
             console.info("special request: %s", ctrl.request);
+
 
 
             $http.get("/register", {
